@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package com.services.schema;
+
+message UserCredentials {
+  string uid = 1;
+  string account_number = 2;
+  string hashed_password = 3;
+  string email_or_phone = 4;
+  string first_name = 5;
+  string last_name = 6;
+  string country = 7;
+  string jwt = 8;
+}
+
+message JWT {
+  string jwt = 1;
+}
+
+// Specific Authentication Service Types
+message AuthGenerateTokenRequest {
+  string email_or_phone = 1;
+  string password = 2;
+}
+
+message AuthGenerateTokenResponse {
+  string uid = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string jwt = 4;
+}
+
+message AuthValidateTokenResponse {
+  string uid = 1;
+  string jwt = 2;
+}
+
+// Specific Authorization Service Types
+message AuthorizeResponse {
+  bool successful = 1;
+  string message = 2;
+  string jwt = 3;
+}
+
+message AuthorizeRequest {
+  string jwt = 1;
+  string operation = 2;
+}
+
+// Specific to Transaction Service Types
+message TransactionResponse {
+  string ref_id = 1;
+  float  amount = 2;
+  string sender_name = 3;
+  string receiver_name = 4;
+  string sender_account_number = 5;
+  string receiver_account_number = 6;
+  string narration = 7;
+  string jwt = 8;
+}
+
+message TransactionRequest {
+  string jwt = 1;
+  float amount = 2;
+  string receiver_account_number = 3;
+}
+
+service AuthenticationService {
+
+  rpc generateToken(AuthGenerateTokenRequest) returns(AuthGenerateTokenResponse){}
+
+  rpc validateToken(JWT) returns(AuthValidateTokenResponse){}
+}
+
+service AuthorizationServiceService {
+
+  rpc validateAccess(AuthorizeRequest) returns(AuthorizeResponse){}
+
+}
+
+service TransactionServiceService {
+
+  rpc transfer(TransactionRequest) returns(TransactionResponse){}
+
+}
