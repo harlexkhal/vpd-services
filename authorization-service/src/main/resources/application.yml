@@ -1,0 +1,7 @@
+grpc:
+  server:
+    port: 8081
+  client:
+    authentication-service:
+      address: static://localhost:8080
+      negotiationType: plaintext
