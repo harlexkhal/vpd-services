@@ -6,6 +6,9 @@
 - **gRPC Server & Client**: Facilitates communication between internal microservices.
 - **Spring Boot**: Simplifies the development of stand-alone, production-grade Spring-based Applications.
 - **Maven (MVN)**: Used for managing project dependencies and building the application.
+- **Node.js**: Used as server-side JavaScript runtime for the node service.
+- **Node Package Manager (NPM)**: Used for managing JavaScript packages and dependencies for the node service.
+- **Express.js**: Used for the developing of the node.js application and RESTful API interface in the node service.
 
 ## Getting Started
 This project covers basic functionalities of a finance application and is not a full-scale finance application. 
